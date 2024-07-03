@@ -1,0 +1,58 @@
+<TITLE>AIS IDEA Query Results</TITLE>
+<H2>AIS IDEA Query Results</H2>
+
+<p><B>HERE'S YOUR QUERY: </B>
+<PRE>
+SELECT DISTINCT b.obj, a.objrev_name30, b.curr_bud_amt, b.tot_encumb,
+b.tot_exp
+FROM cufsrdb..cufs_coa_sobjrev a, cufsrdb..cufs_sum_objytd b
+WHERE a.obj = b.obj AND b.area = '549' AND b.org = '1001'
+ORDER BY b.obj, a.objrev_name30, b.curr_bud_amt, b.tot_encumb, b.tot_exp
+</PRE>
+<B><FORM METHOD="POST" ACTION="/cgi-bin/query_9t">
+<INPUT TYPE="hidden" NAME="ident" VALUE="762rmalo">
+<INPUT TYPE="hidden" NAME="querykey" VALUE="0rmalo#####1996012514:22:37">
+
+<P>If the results look good, you can include a description:
+<br><INPUT TYPE="text" NAME="description" SIZE=40 MAXLENGTH=60>
+<br>and <INPUT TYPE="reset" VALUE="Save This Query">
+</B></FORM><br>
+
+<p><B><A HREF="http://notes.ais.umn.edu/762rmalo.XLS"> Query Results In Microsoft Excel Format <br>(SIZE: 913)</A>
+<p>To Save This File To Disk, CLICK ON THE LINE ABOVE THIS ONE According To These Instructions:<UL>
+<LI> for NETSCAPE - WINDOWS (version 1.0), press SHIFT and click
+<LI> for NETSCAPE - WINDOWS (version 1.1 or later), click with the RIGHT MOUSE button and then choose 'Save this Link as...'
+<LI> for NETSCAPE - MACINTOSH (version 1.0), choose 'Save Next Link As' from the 'FILE' menu and click
+<LI> for NETSCAPE - MACINTOSH (version 1.1 or later), CLICK AND HOLD the mouse and then choose 'Save this Link as...'
+<LI> for MOSAIC, change your 'Load To Disk' option and click
+</UL>
+<P>If the file appears to be corrupted (especially if you're using Netscape),
+<A HREF="http://notes.ais.umn.edu/download.htm">Read These Instructions</A>.</B>
+<P><B>Some Of The Column Headers Had To Be Shortened To 10 Characters In The Result File.
+<br>Here are the 'Actual = Shortened' Comparisons:<br>
+<br>obj = obj
+<br>objrev_name30 = objrev_nam
+<br>curr_bud_amt = curr_bud_a
+<br>tot_encumb = tot_encumb
+<br>tot_exp = tot_exp
+</B>
+
+<B><FORM METHOD="POST" ACTION="/cgi-bin/reprt_1t">
+<INPUT TYPE="hidden" NAME="ident" VALUE="762rmalo">
+<INPUT TYPE="hidden" NAME="datetime" VALUE="1996012514:22:37">
+<P>Would you like to view your data in a report format?  <img border=0 src="continue.gif">
+</B></FORM><br>
+
+<p><B>HERE ARE THE RESULTS OF YOUR QUERY: <br>
+(the Tilde ~ is just a Column Separator)</B><PRE>
+ obj ~objrev_name30                 ~curr_bud_amt    ~tot_encumb      ~tot_exp
+ ----~------------------------------~----------------~----------------~----------------
+~7200~PURCHASE/PROFESSIONAL SRVCS   ~        10000.00~            0.00~            0.00~
+~7300~GENERAL OPERATING SUPP & SRVCS~            0.00~            0.00~         9165.95~
+~7320~LABORATORY/MEDICAL SUPP & SRVC~            0.00~            0.00~            0.00~
+~8000~ELECTRICITY                   ~        30000.00~        18159.00~         8241.00~
+~8020~REPAIRS & MAINTENANCE         ~            0.00~            0.00~            0.00~
+~8210~EQUIPMENT-COMPUTER            ~            0.00~            0.00~            0.00~
+~9980~NMTO-INTRAFUND                ~            0.00~            0.00~            0.00~
+(7 rows affected)
+</PRE>

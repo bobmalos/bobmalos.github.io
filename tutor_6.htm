@@ -1,0 +1,103 @@
+<TITLE>AIS IDEA Query Form 6</TITLE>
+<H2>AIS IDEA Query Form 6</H2>
+<p><B>Here's Your Query: </B>
+<PRE>
+SELECT DISTINCT b.obj, a.objrev_name30, b.curr_bud_amt, b.tot_encumb, 
+b.tot_exp  
+FROM cufsrdb..cufs_coa_sobjrev a, cufsrdb..cufs_sum_objytd b  
+WHERE a.obj = b.obj AND b.area = '549' AND b.org = '1001' 
+</PRE>
+
+<p><B>If you want to add 'GROUP-BY's, select 'Edit Before Submitting' and add them in BEFORE any 'ORDER-BY's.
+<p>Use 'GROUP-BY's <I>ONLY IF</I> you are using FUNCTIONS (like 'SUM') in your SELECT clause.</B>
+
+<p><B>You Can ORDER Your Results BY One Or More Of The Selected Columns.
+<br>A plus-sign (+) means the column is a Primary Key</B>
+
+<FORM METHOD="POST" ACTION="/cgi-bin/query_6t">
+<INPUT TYPE="hidden" NAME="ident" VALUE="762rmalo">
+
+<B><P>ORDER-BY the Following Columns:</B><OL>
+<LI><SELECT NAME="order">
+<OPTION>None
+<OPTION SELECTED>b.obj
+<OPTION>a.objrev_name30
+<OPTION>b.curr_bud_amt
+<OPTION>b.tot_encumb
+<OPTION>b.tot_exp
+</SELECT>
+<LI><SELECT NAME="order">
+<OPTION>None
+<OPTION>b.obj
+<OPTION SELECTED>a.objrev_name30
+<OPTION>b.curr_bud_amt
+<OPTION>b.tot_encumb
+<OPTION>b.tot_exp
+</SELECT>
+<LI><SELECT NAME="order">
+<OPTION>None
+<OPTION>b.obj
+<OPTION>a.objrev_name30
+<OPTION SELECTED>b.curr_bud_amt
+<OPTION>b.tot_encumb
+<OPTION>b.tot_exp
+</SELECT>
+<LI><SELECT NAME="order">
+<OPTION>None
+<OPTION>b.obj
+<OPTION>a.objrev_name30
+<OPTION>b.curr_bud_amt
+<OPTION SELECTED>b.tot_encumb
+<OPTION>b.tot_exp
+</SELECT>
+<LI><SELECT NAME="order">
+<OPTION>None
+<OPTION>b.obj
+<OPTION>a.objrev_name30
+<OPTION>b.curr_bud_amt
+<OPTION>b.tot_encumb
+<OPTION SELECTED>b.tot_exp
+</SELECT>
+</OL>
+<P><B>Choose The ROW LIMIT
+<br>(If you need more than 50,000 rows, you can either
+split-up your query or use a Direct SYBASE Connection)
+<br><INPUT TYPE="radio" NAME="rows" VALUE="10"> 10 (for testing)
+<br><INPUT TYPE="radio" NAME="rows" VALUE="5000" CHECKED> 5000
+<br><INPUT TYPE="radio" NAME="rows" VALUE="10000"> 10,000
+<br><INPUT TYPE="radio" NAME="rows" VALUE="50000"> 50,000
+</B>
+<P><HR><INPUT TYPE="checkbox" NAME="edit">
+<B> EDIT The Query Before Submitting </B><HR>
+<P><B>There is also a 10-minute time limit on each query.</B>
+<p><B>You May Choose Two Output Types:
+<br>
+<INPUT TYPE="radio" NAME="output1" VALUE="screen" CHECKED>Screen
+<INPUT TYPE="radio" NAME="output1" VALUE="FIL">Unformatted File
+<INPUT TYPE="radio" NAME="output1" VALUE="WKS">Lotus 1-2-3 (WKS)
+<INPUT TYPE="radio" NAME="output1" VALUE="WK1">Lotus 1-2-3 (WK1)
+<br><INPUT TYPE="radio" NAME="output1" VALUE="XLS">Microsoft Excel (XLS)
+<INPUT TYPE="radio" NAME="output1" VALUE="DBF">Database (DBF)
+<INPUT TYPE="radio" NAME="output1" VALUE="SDF">ASCII Non-Delimited
+<br><INPUT TYPE="radio" NAME="output1" VALUE="DEL">ASCII Comma-Delimited
+<INPUT TYPE="radio" NAME="output1" VALUE="TAB">ASCII Tab-Delimited
+<P>
+<INPUT TYPE="radio" NAME="output2" VALUE="screen">Screen
+<INPUT TYPE="radio" NAME="output2" VALUE="FIL">Unformatted File
+<INPUT TYPE="radio" NAME="output2" VALUE="WKS">Lotus 1-2-3 (WKS)
+<INPUT TYPE="radio" NAME="output2" VALUE="WK1">Lotus 1-2-3 (WK1)
+<br><INPUT TYPE="radio" NAME="output2" VALUE="XLS" CHECKED>Microsoft Excel (XLS)
+<INPUT TYPE="radio" NAME="output2" VALUE="DBF">Database (DBF)
+<INPUT TYPE="radio" NAME="output2" VALUE="SDF">ASCII Non-Delimited
+<br><INPUT TYPE="radio" NAME="output2" VALUE="DEL">ASCII Comma-Delimited
+<INPUT TYPE="radio" NAME="output2" VALUE="TAB">ASCII Tab-Delimited
+
+<P><INPUT TYPE="checkbox" NAME="zipit" VALUE="x">ZIP The Output File(s) - You Will Need PKUNZIP (or UnStuffIt on the MAC) Or Something Equivalent To UNZIP The File(s)
+ but the size of the file(s) should be reduced by ABOUT 80 PERCENT.
+</B>
+
+<P>Press <A HREF="tutor_results.htm"><img border=0 src="continue.gif"></A> To Submit/Edit The Query <B>OR</B>
+<P>Press <INPUT TYPE="reset"  VALUE="Clear"> To Re-Enter Your Choices
+</FORM>
+<P>
+

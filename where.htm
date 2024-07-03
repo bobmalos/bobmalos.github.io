@@ -1,0 +1,36 @@
+<TITLE>Help For Creating Conditions</TITLE>
+<B>The SELECT DISTINCT Checkbox is used to avoid having Duplicate Rows
+in your Query Results.
+
+<P>NOTE: For ORACLE queries, if you put a date constant in a condition it
+<I>MUST</I> be in MM/DD/YYYY format (e.g. 11/03/1998). You don't need to put quotes
+around it but it <I>MUST</I> be in that format.
+
+<P>--- JOIN CONDITIONS ---
+<br>JOIN Conditions are needed when more than one table is included in the
+query. You pick a column in each table that is Common to both. Each table
+in the Query must be included in a JOIN Condition.
+
+<P>--- OTHER CONDITIONS ---
+<br>OTHER Conditions are optional - they let you narrow-down the number of
+rows to be returned.
+<UL>
+<LI>You choose a Column in the ListBox then you choose an Operator then you
+type in a Value
+<LI>Don't worry about putting quotes around the Value - this form will do
+that AUTOMATICALLY for Text Columns
+<LI>For EQUAL-TO, NOT-EQUAL-TO, LESS-THAN, NOT-LESS-THAN, GREATER-THAN, and
+NOT-GREATER-THAN you just put in ONE VALUE
+<LI>For IN and NOT-IN you put in TWO OR MORE VALUES SEPARATED BY COMMAS
+(for example:  1000,2000,3000)
+<LI>For BETWEEN and NOT-BETWEEN you put in TWO VALUES SEPARATED BY THE WORD
+'AND' (for example:  1000 and 2000)
+<LI>For LIKE and NOT-LIKE you put in a STRING SURROUNDED BY QUOTES -
+LIKE and NOT-LIKE are for Text Columns Only
+(for example:  'SMITH' or 'SMIT%' or 'SMIT_'  -  the second string means
+anything that STARTS with 'SMIT'; the third string means anything that STARTS
+with 'SMIT' and Has Exactly One More Character;  so 'SMITHE' would match the
+second string but NOT the third)
+</UL>
+
+</B>

@@ -1,0 +1,51 @@
+<HR SIZE=4>
+<B><font size=5>T</font>his tutorial steps you through the Forms that create 
+an SQL (Structured Query Language) query for you.  
+<UL>
+<LI><font size=5>Y</font>ou may fill in the Boxes and Lists but you will not
+be changing the results.
+<LI><font size=5>I</font>f it looks like a List is empty, scroll-down to see
+what has been chosen.
+</UL></B>
+<HR SIZE=4>
+
+<TITLE>AIS IDEA Query Form 1</TITLE>
+<H2>AIS IDEA Query Form 1</H2>
+
+<FORM METHOD="POST" ACTION="/cgi-bin/query_1t">
+
+</B><HR><B>The Test ID is 'guest1' with no password - it will get you 
+in but you won't be able to run queries against Production Data.</B>
+
+<UL>
+<LI>Enter your SYBASE UserID  : <INPUT NAME="userid" VALUE="test">
+<LI>Enter your SYBASE Password: <INPUT TYPE="password" NAME="password" VALUE="testtest">
+</UL>
+
+<p><B>If You Choose To Build A Query You Will See Five Forms After This One:</B>
+
+<UL>
+<LI>Form 2 - Choose the <B>Database(s)</B>
+<LI>Form 3 - Choose the <B>Table(s)</B>
+<LI>Form 4 - Choose the <B>Column(s)</B>
+<LI>Form 5 - Choose the <B>Condition(s)</B>
+<LI>Form 6 - Choose the <B>Order</B> (if any) and <B>Execute</B> the query
+</UL>
+
+<p><B>The results can be displayed on your screen and/or written 
+to a file in one of several formats (Excel, Lotus, DBF, or 
+ASCII-Delimited-Text).
+
+<br><br>Choose A Querying Method:
+<UL>
+<LI><INPUT TYPE="radio" NAME="method" VALUE="build" CHECKED> Build A Query (with 'Point and Click')
+<LI><INPUT TYPE="radio" NAME="method" VALUE="freeform"> Free-Form Query
+<LI><INPUT TYPE="radio" NAME="method" VALUE="saved"> Choose A Saved Query
+<LI><INPUT TYPE="radio" NAME="method" VALUE="delete"> Delete One Or More Saved Queries
+</UL>
+</B><P>
+
+<P><A HREF="tutor_2.htm"><img border=0 src="continue.gif"></A>
+<B><I>It will take a few seconds for your ID and Password to be Verified.</I></B>
+
+</FORM>

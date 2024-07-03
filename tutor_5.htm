@@ -1,0 +1,206 @@
+<TITLE>AIS IDEA Query Form 5</TITLE>
+<H2>AIS IDEA Query Form 5</H2>
+
+<FORM METHOD="POST" ACTION="/cgi-bin/query_5t">
+<INPUT TYPE="hidden" NAME="ident" VALUE="762rmalo">
+
+<p><B>Enter Conditions For This Query. When you're finished,
+<br>Press <A HREF="tutor_6.htm"><img border=0 src="continue.gif"></A> To Go To Form 6 OR
+Press <INPUT TYPE="reset"  VALUE="Clear"> To Re-Enter Your Choices.</B>
+
+<P><B><A HREF="http://notes.ais.umn.edu:81/where.htm">Click Here To Get Help For Entering Conditions</A></B>
+
+<HR><B><I>!!! NOTE !!!</I> At Least ONE Condition MUST Be Entered. 
+<br>(because you chose more than one table)
+<br>JOIN Condition(s) Will Be Generated For You.</B>
+<HR><INPUT TYPE="checkbox" NAME="d" CHECKED><B>
+ Check This Box If You Want "SELECT DISTINCT" In Your Query.</B>
+<HR><B>
+CONDITIONS
+<br>(Checking BEGIN GROUP and END is like putting parentheses around groups of conditions)</B>
+<p><INPUT TYPE="checkbox" NAME="ga" CHECKED><B>Begin Group...(</B>
+<br><SELECT NAME="l1" SIZE=10>
+<OPTION>TABLE: cufs_coa_sobjrev
+<OPTION>a.fisc_yr
+<OPTION>a.obj
+<OPTION>a.objrev_cat
+<OPTION>a.objrev_cat_name12
+<OPTION>a.objrev_cat_name30
+<OPTION>a.objrev_class
+<OPTION>a.objrev_cls_name12
+<OPTION>a.objrev_cls_name30
+<OPTION>a.objrev_group
+<OPTION>a.objrev_grp_name12
+<OPTION>a.objrev_grp_name30
+<OPTION>a.objrev_name12
+<OPTION>a.objrev_name30
+<OPTION>a.rev
+<OPTION>a.sub_objrev
+<OPTION>a.sub_objrev_name12
+<OPTION>a.sub_objrev_name30
+<OPTION>TABLE: cufs_sum_objytd
+<OPTION>b.appr_bud_amt
+<OPTION SELECTED>b.area
+<OPTION>b.bud_fy
+<OPTION>b.curr_bud_amt
+<OPTION>b.func
+<OPTION>b.fund
+<OPTION>b.obj
+<OPTION>b.org
+<OPTION>b.spend_control_ind
+<OPTION>b.status_ind
+<OPTION>b.tot_encumb
+<OPTION>b.tot_exp
+</SELECT>
+--<SELECT NAME="c1" SIZE=10>
+<OPTION VALUE="E" SELECTED>Equal-To<OPTION VALUE="NE">Not-Equal-To
+<OPTION VALUE="GT">Greater-Than<OPTION VALUE="LT">Less-Than
+<OPTION VALUE="NGT">Not-Greater-Than<OPTION VALUE="NLT">Not-Less-Than
+<OPTION VALUE="I">In<OPTION VALUE="NI">Not-In
+<OPTION VALUE="B">Between<OPTION VALUE="NB">Not-Between
+<OPTION VALUE="L">Like<OPTION VALUE="NL">Not-Like
+</SELECT>--
+<INPUT TYPE="text" NAME="r1" SIZE=20 MAXLENGTH=50 VALUE="549">
+<INPUT TYPE="checkbox" NAME="gb"><B>End...)</B>
+<br><br><INPUT TYPE="radio" NAME="o1" VALUE="a" CHECKED> AND
+<INPUT TYPE="radio" NAME="o1" VALUE="o"> OR
+<p><INPUT TYPE="checkbox" NAME="ga"><B>Begin Group...(</B>
+<br><SELECT NAME="l2" SIZE=10>
+<OPTION>TABLE: cufs_coa_sobjrev
+<OPTION>a.fisc_yr
+<OPTION>a.obj
+<OPTION>a.objrev_cat
+<OPTION>a.objrev_cat_name12
+<OPTION>a.objrev_cat_name30
+<OPTION>a.objrev_class
+<OPTION>a.objrev_cls_name12
+<OPTION>a.objrev_cls_name30
+<OPTION>a.objrev_group
+<OPTION>a.objrev_grp_name12
+<OPTION>a.objrev_grp_name30
+<OPTION>a.objrev_name12
+<OPTION>a.objrev_name30
+<OPTION>a.rev
+<OPTION>a.sub_objrev
+<OPTION>a.sub_objrev_name12
+<OPTION>a.sub_objrev_name30
+<OPTION>TABLE: cufs_sum_objytd
+<OPTION>b.appr_bud_amt
+<OPTION>b.area
+<OPTION>b.bud_fy
+<OPTION>b.curr_bud_amt
+<OPTION>b.func
+<OPTION>b.fund
+<OPTION>b.obj
+<OPTION SELECTED>b.org
+<OPTION>b.spend_control_ind
+<OPTION>b.status_ind
+<OPTION>b.tot_encumb
+<OPTION>b.tot_exp
+</SELECT>
+--<SELECT NAME="c2" SIZE=10>
+<OPTION VALUE="E" SELECTED>Equal-To<OPTION VALUE="NE">Not-Equal-To
+<OPTION VALUE="GT">Greater-Than<OPTION VALUE="LT">Less-Than
+<OPTION VALUE="NGT">Not-Greater-Than<OPTION VALUE="NLT">Not-Less-Than
+<OPTION VALUE="I">In<OPTION VALUE="NI">Not-In
+<OPTION VALUE="B">Between<OPTION VALUE="NB">Not-Between
+<OPTION VALUE="L">Like<OPTION VALUE="NL">Not-Like
+</SELECT>--
+<INPUT TYPE="text" NAME="r2" SIZE=20 MAXLENGTH=50 VALUE="1001">
+<INPUT TYPE="checkbox" NAME="gb"><B>End...)</B>
+<br><br><INPUT TYPE="radio" NAME="o2" VALUE="a" CHECKED> AND
+<INPUT TYPE="radio" NAME="o2" VALUE="o"> OR
+<p><INPUT TYPE="checkbox" NAME="ga"><B>Begin Group...(</B>
+<br><SELECT NAME="l3" SIZE=10>
+<OPTION>TABLE: cufs_coa_sobjrev
+<OPTION>a.fisc_yr
+<OPTION>a.obj
+<OPTION>a.objrev_cat
+<OPTION>a.objrev_cat_name12
+<OPTION>a.objrev_cat_name30
+<OPTION>a.objrev_class
+<OPTION>a.objrev_cls_name12
+<OPTION>a.objrev_cls_name30
+<OPTION>a.objrev_group
+<OPTION>a.objrev_grp_name12
+<OPTION>a.objrev_grp_name30
+<OPTION>a.objrev_name12
+<OPTION>a.objrev_name30
+<OPTION>a.rev
+<OPTION>a.sub_objrev
+<OPTION>a.sub_objrev_name12
+<OPTION>a.sub_objrev_name30
+<OPTION>TABLE: cufs_sum_objytd
+<OPTION>b.appr_bud_amt
+<OPTION>b.area
+<OPTION>b.bud_fy
+<OPTION>b.curr_bud_amt
+<OPTION>b.func
+<OPTION>b.fund
+<OPTION>b.obj
+<OPTION>b.org
+<OPTION>b.spend_control_ind
+<OPTION>b.status_ind
+<OPTION>b.tot_encumb
+<OPTION>b.tot_exp
+</SELECT>
+--<SELECT NAME="c3" SIZE=10>
+<OPTION VALUE="E" SELECTED>Equal-To<OPTION VALUE="NE">Not-Equal-To
+<OPTION VALUE="GT">Greater-Than<OPTION VALUE="LT">Less-Than
+<OPTION VALUE="NGT">Not-Greater-Than<OPTION VALUE="NLT">Not-Less-Than
+<OPTION VALUE="I">In<OPTION VALUE="NI">Not-In
+<OPTION VALUE="B">Between<OPTION VALUE="NB">Not-Between
+<OPTION VALUE="L">Like<OPTION VALUE="NL">Not-Like
+</SELECT>--
+<INPUT TYPE="text" NAME="r3" SIZE=20 MAXLENGTH=50>
+<INPUT TYPE="checkbox" NAME="gb"><B>End...)</B>
+<br><br><INPUT TYPE="radio" NAME="o3" VALUE="a" CHECKED> AND
+<INPUT TYPE="radio" NAME="o3" VALUE="o"> OR
+<p><INPUT TYPE="checkbox" NAME="ga"><B>Begin Group...(</B>
+<br><SELECT NAME="l4" SIZE=10>
+<OPTION>TABLE: cufs_coa_sobjrev
+<OPTION>a.fisc_yr
+<OPTION>a.obj
+<OPTION>a.objrev_cat
+<OPTION>a.objrev_cat_name12
+<OPTION>a.objrev_cat_name30
+<OPTION>a.objrev_class
+<OPTION>a.objrev_cls_name12
+<OPTION>a.objrev_cls_name30
+<OPTION>a.objrev_group
+<OPTION>a.objrev_grp_name12
+<OPTION>a.objrev_grp_name30
+<OPTION>a.objrev_name12
+<OPTION>a.objrev_name30
+<OPTION>a.rev
+<OPTION>a.sub_objrev
+<OPTION>a.sub_objrev_name12
+<OPTION>a.sub_objrev_name30
+<OPTION>TABLE: cufs_sum_objytd
+<OPTION>b.appr_bud_amt
+<OPTION>b.area
+<OPTION>b.bud_fy
+<OPTION>b.curr_bud_amt
+<OPTION>b.func
+<OPTION>b.fund
+<OPTION>b.obj
+<OPTION>b.org
+<OPTION>b.spend_control_ind
+<OPTION>b.status_ind
+<OPTION>b.tot_encumb
+<OPTION>b.tot_exp
+</SELECT>
+--<SELECT NAME="c4" SIZE=10>
+<OPTION VALUE="E" SELECTED>Equal-To<OPTION VALUE="NE">Not-Equal-To
+<OPTION VALUE="GT">Greater-Than<OPTION VALUE="LT">Less-Than
+<OPTION VALUE="NGT">Not-Greater-Than<OPTION VALUE="NLT">Not-Less-Than
+<OPTION VALUE="I">In<OPTION VALUE="NI">Not-In
+<OPTION VALUE="B">Between<OPTION VALUE="NB">Not-Between
+<OPTION VALUE="L">Like<OPTION VALUE="NL">Not-Like
+</SELECT>--
+<INPUT TYPE="text" NAME="r4" SIZE=20 MAXLENGTH=50>
+<INPUT TYPE="checkbox" NAME="gb"><B>End...)</B>
+
+<P><P><B>Press <A HREF="tutor_6.htm"><img border=0 src="continue.gif"></A> To Go To Form 6 OR
+Press <INPUT TYPE="reset"  VALUE="Clear"> To Re-Enter Your Choices.</B>
+</FORM>
