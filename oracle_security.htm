@@ -1,0 +1,31 @@
+<HTML>
+<TITLE>IDEA DWTEST (ORACLE) Security Forms</TITLE>
+<H3>IDEA DWTEST (ORACLE) Security Forms</H3>
+<FORM METHOD="POST" ACTION="/cgi-rexx/orasec_1.rex">
+<INPUT TYPE="hidden" NAME="prodortest" VALUE="dwtest">
+<br><B>Your Oracle ID: </B><INPUT NAME="ID" LENGTH=10 MAXLENGTH=20>
+<br><B>Your Oracle Password: </B><INPUT TYPE="password" NAME="PASS" LENGTH=10 MAXLENGTH=20>
+<P>
+<INPUT TYPE="submit" NAME="choice" VALUE="ADD A NEW USER">
+<P>
+<INPUT TYPE="submit" NAME="choice" VALUE="DELETE A USER">
+<P>
+<INPUT TYPE="submit" NAME="choice" VALUE="CHANGE A PASSWORD">
+<P>
+<INPUT TYPE="submit" NAME="choice" VALUE="GRANT/REVOKE ROLE(S)">
+<br><B>Customer's UserID: </B><INPUT NAME="roleuser" LENGTH=10 MAXLENGTH=20>
+<P>
+<INPUT TYPE="submit" NAME="choice" VALUE="LOCK/UNLOCK USER">
+<br><B>Customer's UserID: </B><INPUT NAME="lockuser" LENGTH=10 MAXLENGTH=20>
+<P>
+<INPUT TYPE="submit" NAME="choice" VALUE="By Operator ID Report">
+<P>
+<INPUT TYPE="submit" NAME="choice" VALUE="By Role Report">
+<P>
+<INPUT TYPE="submit" NAME="choice" VALUE="Locked Users Report">
+<!-- not useful now for DWTEST - RPM - 7-22-99 
+<P>
+<INPUT TYPE="submit" NAME="choice" VALUE="Last Access Date Report">
+ -->
+
+</HTML>

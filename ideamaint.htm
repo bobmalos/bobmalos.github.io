@@ -1,0 +1,175 @@
+<HTML>
+
+<TITLE> IDEA Web Maintenance Page </TITLE>
+
+<A NAME="top"></A>
+<H2> IDEA Web Maintenance Page </H2>
+
+<B>
+<A HREF="#datadict"> Data Dictionary Form </A>
+<br><A HREF="#tab_col"> Table and Column Information Form </A>
+<br><A HREF="#db_list"> Database List Form </A>
+<br><A HREF="#stats"> Server Statistics Form </A>
+<br><A HREF="#turnover"> CGI Script Turnover Form </A>
+<br><A HREF="#tailit"> TAIL IT! </A>
+</B>
+
+<HR SIZE=4>
+
+<A NAME="datadict"></A>
+<P><FORM METHOD="POST" ACTION="/cgi-bin/rusure">
+<INPUT TYPE="hidden" NAME="cmd" VALUE="datadict">
+
+<B>DATA DICTIONARY FORM
+<P>(use this Form to create the Large HTML Data Dictionary and the
+Small HTML Column Files)
+
+<P>Name Of Database: <INPUT TYPE="text" NAME="database" SIZE=20 MAXLENGTH=20>
+<br>NOTE: There MUST be a File called 'xxxxxDIC.txt' in NOTES\IDEA
+<br>(where 'xxxxx' is the Database Name)
+
+<P><INPUT TYPE="submit" VALUE="Submit">
+<P>NOTE: This will take 30 seconds to one minute
+</B>
+
+<P><A HREF="#top"><B>Back To Top</B></A>
+</FORM>
+
+
+
+
+<HR SIZE=4>
+
+<A NAME="tab_col"></A>
+<P><FORM METHOD="POST" ACTION="/cgi-bin/rusure">
+<INPUT TYPE="hidden" NAME="cmd" VALUE="tblmaint">
+
+<B>DATABASE TABLE AND COLUMN INFORMATION FORM
+<P>(use this Form to get the latest Table and Column information from
+SYBASE and update TABLES.DBF and COLUMNS.DBF)
+
+<P>Name Of Database: <INPUT TYPE="text" NAME="database" SIZE=20 MAXLENGTH=20>
+<P><INPUT TYPE="radio" NAME="method" VALUE="add" CHECKED>  Add A New Database
+<br><INPUT TYPE="radio" NAME="method" VALUE="change">  Change An Existing Database
+
+<P><INPUT TYPE="submit" VALUE="Submit">
+<P>NOTE: This will take one or two minutes
+<br>(depending on the number of Tables in the Database)
+</B>
+
+<P><A HREF="#top"><B>Back To Top</B></A>
+</FORM>
+
+
+
+
+<HR SIZE=4>
+
+<A NAME="db_list"></A>
+<P><FORM METHOD="POST" ACTION="/cgi-bin/dblist">
+
+<P><B>DATABASE LIST FORM
+<P>(use this Form to VIEW or CHANGE the Database List presented
+on Form 2)
+
+<P><INPUT TYPE="radio" NAME="testprod" VALUE="test" CHECKED>  TEST DB-List
+<br><INPUT TYPE="radio" NAME="testprod" VALUE="prod">  PRODUCTION DB-List
+
+<P><INPUT TYPE="radio" NAME="method" VALUE="add" CHECKED>  Add A New Database
+<br><INPUT TYPE="radio" NAME="method" VALUE="change">  Change An Existing Database Description
+<br><INPUT TYPE="radio" NAME="method" VALUE="delete">  Delete An Existing Database
+<br><INPUT TYPE="radio" NAME="method" VALUE="view">  View The DB-List
+
+<P>Database:  <INPUT TYPE="text" NAME="database" SIZE=20 MAXLENGTH=20>
+<br>NOTE: Database Name Should Be In LOWERCASE
+<P>Description:  <INPUT TYPE="text" NAME="description" SIZE=60 MAXLENGTH=80>
+<br>NOTE: Spaces Will Be Replaced By Dashes ('-')
+
+<P><INPUT TYPE="submit" VALUE="Submit">
+
+<P><A HREF="#top"><B>Back To Top</B></A>
+</FORM>
+
+
+
+
+<HR SIZE=4>
+
+<A NAME="stats"></A>
+<P><FORM METHOD="POST" ACTION="/cgi-bin/rusure">
+<INPUT TYPE="hidden" NAME="cmd" VALUE="stats">
+
+<B>SERVER STATISTICS FORM
+<P>Create the Statistics For:
+<br><INPUT TYPE="radio" NAME="stats" VALUE="prod" CHECKED> The Production Server (Port 80)
+<br><INPUT TYPE="radio" NAME="stats" VALUE="test"> The Test Server (Port 81)
+</B>
+
+<P><INPUT TYPE="submit" VALUE="Submit">
+<P>NOTE: This will take about a minute
+
+<P><A HREF="#top"><B>Back To Top</B></A>
+</FORM>
+
+
+
+
+<HR SIZE=4>
+
+<A NAME="turnover"></A>
+<P><FORM METHOD="POST" ACTION="/cgi-bin/turnover">
+<!-- &ltINPUT TYPE="hidden" NAME="cmd" VALUE="turnover"&gt -->
+
+<B>CGI SCRIPT TURNOVER FORM
+<P>(use this Form to copy changes from the TEST CGI Scripts to the
+PRODUCTION CGI Scripts - or Back-Out The Previous Change)
+
+<P><INPUT TYPE="radio" NAME="method" VALUE="directories"> List Web Server Directories
+<br><INPUT TYPE="radio" NAME="method" VALUE="logfiles"> Copy Web Server LogFiles To P:\NOTES\TEMP
+<br><br><INPUT TYPE="radio" NAME="method" VALUE="newtest" CHECKED> COPY From 'TEMP' TO TEST
+<br><INPUT TYPE="radio" NAME="method" VALUE="testprod"> COPY From TEST To PRODUCTION
+<br><INPUT TYPE="radio" NAME="method" VALUE="backtest"> BACKOUT Of TEST
+<br><INPUT TYPE="radio" NAME="method" VALUE="backprod"> BACKOUT Of PRODUCTION
+<br><INPUT TYPE="radio" NAME="method" VALUE="copytocafe"> COPY A File TO P:\NOTES\TEMP ON CAFE
+<br><INPUT TYPE="radio" NAME="method" VALUE="copyfromcafe"> COPY A File FROM P:\NOTES\TEMP TO The Web
+
+<P>File To Copy To/From CAFE: (include Directory, e.g. goserv\query_1t.cmd)
+<br><INPUT TYPE="text" NAME="filetocopy" SIZE=40 MAXLENGTH=50>
+
+<P>Check The Scripts You Want:
+<pre>
+<INPUT TYPE="checkbox" NAME="query_1" VALUE="x"> Query_1 . . . . .  <INPUT TYPE="checkbox" NAME="query_2" VALUE="x"> Query_2 . . . . .  <INPUT TYPE="checkbox" NAME="query_3" VALUE="x"> Query_3 . . . . .
+<INPUT TYPE="checkbox" NAME="query_4" VALUE="x"> Query_4 . . . . .  <INPUT TYPE="checkbox" NAME="query_5" VALUE="x"> Query_5 . . . . .  <INPUT TYPE="checkbox" NAME="query_6" VALUE="x"> Query_6 . . . . .
+<INPUT TYPE="checkbox" NAME="query_7" VALUE="x"> Query_7 . . . . .  <INPUT TYPE="checkbox" NAME="query_8" VALUE="x"> Query_8 . . . . .  <INPUT TYPE="checkbox" NAME="query_9" VALUE="x"> Query_9 . . . . .
+<INPUT TYPE="checkbox" NAME="share_1" VALUE="x"> Share_1 . . . . .  <INPUT TYPE="checkbox" NAME="share_2" VALUE="x"> Share_2 . . . . .  <INPUT TYPE="checkbox" NAME="share_3" VALUE="x"> Share_3 . . . . .
+<INPUT TYPE="checkbox" NAME="reprt_1" VALUE="x"> reprt_1 . . . . .  <INPUT TYPE="checkbox" NAME="reprt_2" VALUE="x"> reprt_2 . . . . .  <INPUT TYPE="checkbox" NAME="reprt_3" VALUE="x"> reprt_3 . . . . .
+<INPUT TYPE="checkbox" NAME="password" VALUE="x"> Password . . . . .
+<INPUT TYPE="checkbox" NAME="dbload1" VALUE="x"> Dbload1 . . . . .   <INPUT TYPE="checkbox" NAME="dbload2" VALUE="x"> Dbload2 . . . . .   <INPUT TYPE="checkbox" NAME="datadict" VALUE="x"> Datadict . . . . .
+<INPUT TYPE="checkbox" NAME="dblist" VALUE="x"> Dblist . . . . .    <INPUT TYPE="checkbox" NAME="rusure" VALUE="x"> Rusure . . . . .    <INPUT TYPE="checkbox" NAME="stats" VALUE="x"> Stats . . . . .
+<INPUT TYPE="checkbox" NAME="tblmaint" VALUE="x"> Tblmaint . . . .  <INPUT TYPE="checkbox" NAME="dblist1" VALUE="x"> Dblist1 . . . . .
+<INPUT TYPE="checkbox" NAME="cleanup" VALUE="x"> Cleanup . . . . .
+</pre>
+
+<P><INPUT TYPE="submit" VALUE="Submit">
+
+<P><A HREF="#top"><B>Back To Top</B></A>
+</FORM>
+
+<HR SIZE=4>
+
+<A NAME="tailit"></A>
+<P><FORM METHOD="POST" ACTION="/cgi-bin/tailit">
+
+<B>TAIL A FILE
+<br>File To Tail: <INPUT NAME="filetotail" SIZE=40 MAXLENGTH=50>
+<br>Number of Lines: <INPUT NAME="taillines" SIZE=4 MAXLENGTH=10>
+<br>Result File: <INPUT NAME="tailresult" SIZE=40 MAXLENGTH=50>
+</B>
+
+<P><INPUT TYPE="submit" VALUE="Submit">
+<P>NOTE: This will take about a minute
+
+<P><A HREF="#top"><B>Back To Top</B></A>
+</FORM>
+
+</HTML>

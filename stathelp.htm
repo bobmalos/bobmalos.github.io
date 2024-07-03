@@ -1,0 +1,96 @@
+<HTML><TITLE>IDEA Web Status/History Page - HELP</TITLE>
+<H3>What the heck is all that stuff on the Status/History Page ???</H3>
+<B><UL>
+<LI><I>Display Today's Session History</I> is a list of all the query building sessions that have run so far TODAY. It is 
+in reverse chronological order (most recent session first). If at least one query has actually run for a session you can 
+click on the session name to see the detail. The detail page will also be in reverse chronological order. At the bottom
+of the page there is a ListBox that lets you look at the sessions for a previous day.
+<br>This page is automatically rebuilt every 5 minutes (if you need a refresh right away you can go to:
+http://notes.ais.umn.edu/runsession.htm)
+<LI><I>Display Active Sessions</I> is a list of all the query building sessions (for TODAY) that have not yet expired
+(their temporary files still exist). At the top of this page you can see the amount of space left on the disk drive
+containing the Web Server. If that number is many hundreds of megabytes lower than normal then somebody probably ran
+a monstrous query. The main purpose of this page is to let you PURGE sessions that should have expired or are taking
+up too much space. <br>The list is in chronological order (most recent session at the bottom). Some of the active 
+processes on the web server are also listed at the bottom of the page. Namely - DBMSWI32 (the conversion utility), ISQL 
+(SYBASE queries), and PLUS33 (ORACLE queries). One reason that a session might not be deleted automatically is because
+a conversion process got hung up - in this case you would KILL the DBMSWI32 process and then PURGE the session.
+<LI><I>IMPORTANT NOTE!</I> - if the amount of space is low but you can't see any files displayed that are very large
+you need to TELNET to 160.94.248.44 (the IP address of the web server machine) and delete the large file(s) out of
+F:\INETPUB\ and maybe F:\INETPUB\WWWROOT\GODATA70\ (or you could go to the server room instead of TELNETing <I>OR you 
+could just use the \\Dw_pws\Inetpub 'share'</I>
+<LI><I>Display NT Services</I> is just that - it displays all the Services running on the Windows NT box where our
+web server resides. If you want to actually STOP or START a service you would have to go the machine and bring up
+'Control Panel' then 'Services'.
+<LI><I>Display SYBASE and ORACLE Session Stats</I> shows the (non-system) sessions running on both SYBASE (zoom99.oit.umn.edu)
+and ORACLE (DWPROD and also DWTEST). Here you can see whether one (or more) sessions is being a 'resource hog'. The 
+'Host' column on the SYBASE display will reflect the Query Builder Sesssion name (if it's an IDEA Web query). The 'Host'
+column on the SYBASE display will say 'FINRPTS' if it's a Production report from financial.reports.umn.edu and 'TFINRPTS'
+if it's a Test report from financial.reports.umn.edu.
+<LI><I>Query Builder Log Form</I> lets you do some ad-hoc queries against the Web Query Builder Archive (including the 
+text of every web query ever run). The most powerful feature is the 'Query CONTAINS' box - you could enter something like
+'CUFS_TRAN_OPEN_PDS and HE_DIS_ADJ_CU' to display all queries that referenced those 2 tables. You can also search based
+on a User ID, a DATE or a DATE RANGE, or the time it took to run the query (e.g. anything greater than 599 seconds would
+be over the 10 minute time limit)
+You must enter your IDEA ID and Password to use this form.
+<LI><I>Query Builder Maintenance Form</I> has several parts: <UL>
+  <LI>Data Dictionary Form is for rebuilding the SYBASE individual column files (linked to from Query Form 4)
+      <br>NOTE: For the Oracle Data Dictionary links you have to MANUALLY EDIT a few of the REXX scripts:
+      <br>1) for QUERY_2O.REX and QUERY2OT.REX look for a line like:
+      <br>WHEN Data_Base = 'PS_DWHR' THEN TOC_File = 'hrpsdic/Hr_ditoc.htm'
+      <br>and make a new line for your new set of tables.
+      <br>2) for QUERY_3O.REX and QUERY3OT.REX look for the lines that have 'PS_DWSA' in them and 
+      <br>add a new condition for your new set of tables (e.g. add something like <br>" | SUBSTR(xTable,1,7) = 'PS_DWFA' " 
+  <LI>SYBASE Table and Column Information Form is for rebuilding the table and column information for a 
+      particular SYBASE database
+      <br> NOTE: If something goes wrong (e.g. the wrong tables are added) you can RECOVER the table and column information
+      files by going to the DBFNDX.ZIP archive in \\DW_FILE_PRINT\DW_SHARE\WEB_SERVER_BACKUPS\ and extracting the following
+      7 files: TABLES.DBF, TABLES.NDX, TAB_COL.NDX, COLUMNS.DBF, COLUMN.NDX, COL_SORT.DBF, COL_SORT.NDX; then just copy
+      them back over to the F:\INETPUB\CGI-REXX directory on the web server.
+  <LI>ORACLE Table and Column Information Form is for rebuilding the table and column information for a 
+      particular group of ORACLE tables (e.g. PS_DWHR_. . .) 
+      <br> NOTE: If something goes wrong (e.g. the wrong tables are added) you can RECOVER the table and column information
+      files by going to the DBFNDX.ZIP archive in \\DW_FILE_PRINT\DW_SHARE\WEB_SERVER_BACKUPS\ and extracting the following
+      7 files: TAB_ORA.DBF, TAB_ORA.NDX, TABC_ORA.NDX, COL_ORA.DBF, COL_ORA.NDX, COLS_ORA.DBF, COLS_ORA.NDX; then just copy
+      them back over to the F:\INETPUB\CGI-REXX directory on the web server.
+  <LI>SYBASE Database List Form is for rebuilding the database list that appears on Form 2 of the SYBASE query builder
+  <LI>ORACLE Database List Form is for rebuilding the list that appears on Form 2 of the ORACLE query builder
+  </UL>
+<LI><I>SYBASE TEST Query Form</I> - run SYBASE queries using test versions of the scripts
+<LI><I>SYBASE KILL Query Form</I> - kill your SYBASE queries 
+<LI><I>ORACLE TEST Query Form</I> - run ORACLE queries using test versions of the scripts (ALSO - choose from many different INSTANCES)
+<LI><I>ORACLE KILL Query Form</I> - kill your ORACLE queries
+<LI><I>Reporting Template Log Form</I> lets you do some ad-hoc queries against the Reporting Template Archive. You can 
+search by Report Name, by User Name, or by Input String content. You can also choose one date or one month or a range
+of dates. If you want to see the User ID you need to click on 'Here are the results in ASCII Tab-Delimited Format' when
+you see the results (or you could choose the Excel format).
+<LI><I>Reporting Template Maintenance Form</I> is where you can create a new report or change an existing one. To create
+a new report you first need to have one or more (SYBASE) stored procedures prepared. There's lot of help embedded in the
+reporting template maintenance forms. When you use this form you are affecting the DEVELOPMENT VERSION ONLY.
+<LI><I>Reporting Template Report Parameters Form</I> lets you see the report parameters (including the text of that
+report's Stored Procedures) for any report; they are listed in alphabetical order. You can also choose the Development,
+Test, or Production version of the report.
+<LI><I>Reporting Template Admin Form</I> is for moving the development version of a report to TEST or for moving
+TEST to PRODUCTION.
+<LI><I>Logquery Form</I> lets you do ad-hoc queries against the Reporting Template log database or the Query
+Builder log database
+<LI><I>Refresh the CUFSPARM table</I> is used when a CUFS Softclose has run but it ended late (after 6AM) and the
+financial.reports.umn.edu Report Forms don't reflect the new 'month-end' date. This just runs a quick SQL to get the
+(SYBASE) cufsrdb..cufs_parms row (it's a one row table).
+<LI><I>Edit the Report Form Parameters</I> - lets you change the way the Report Forms look; you can change the title
+of a particular section or change the list of reports that appear in that section; you can also redefine some of
+the parameters to make the Test form different from the Production form. After editing the parameters you would hit
+the 'Rebuild the Report Forms' button to actually change the forms.
+<LI><I>Rebuild the Report Forms</I> re-creates the financial.reports.umn.edu Report Forms. You would use this  
+after 'Refresh the CUFSPARM table' or after 'Edit the Report Form Parameters'.
+<LI><I>Re-Create the Reporting Template GLOSSARY Pages</I> is used when the GLOSSARY.TXT file has been modified and 
+then transferred back to the web server machine. This rebuilds all the little web pages that are linked to from the
+'financial' reports.
+<LI><I>Re-Create the Index Information for SYBASE</I> is for the SYBASE Query Builder. The information about which 
+columns are indexed for which tables affects the AUTO-JOIN feature.
+<LI><I>Re-Create the Index Information for ORACLE</I> is for the ORACLE Query Builder. The information about which 
+columns are indexed for which tables affects the AUTO-JOIN feature.
+<LI><I>Re-Create ORACLE Setup Table List</I> queries the PS_DW_SETUPTBL_LIST table in DWPROD. The results are used
+to build the list of SETUP tables that appears on Form 3 of the ORACLE Query Builder
+</UL></B>
+</HTML>

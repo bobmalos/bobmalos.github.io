@@ -1,0 +1,45 @@
+<TITLE>IDEA NT-ORACLE Query Form 1</TITLE>
+<H2>IDEA NT-ORACLE Query Form 1</H2>
+
+<FORM METHOD="POST" ACTION="/cgi-rexx/query_1o.rex">
+
+<HR>
+<B><I>REMEMBER</I> - If you want to kill a query that is currently running use
+the <A HREF="https://notes.ais.umn.edu/processo.htm" TARGET="_blank">ORACLE KILL PROCESSES Form</A>
+ - do not just hit your browser's STOP button.</B>
+<br><B>CHANGES - 5/11/00 - "List Your Saved Queries" option has been added</B>
+
+<UL>
+<LI>Enter your ORACLE UserID  : <INPUT NAME="userid" MAXLENGTH=10>
+<LI>Enter your ORACLE Password: <INPUT TYPE="password" NAME="password">
+<LI>Choose An ORACLE Database:
+<br><INPUT TYPE="radio" NAME="instance" VALUE="SYSADM" CHECKED> PeopleSoft Data Warehouse
+<br><INPUT TYPE="radio" NAME="instance" VALUE="CUST"> Customer File
+<br><INPUT TYPE="radio" NAME="instance" VALUE="SPCTEST1"> TEST Space Database
+</UL>
+
+<p><B>If You Choose To Build A Query You Will See Five Forms After This One:</B>
+<UL>
+<LI>Form 2 - Choose the <B>Database(s)</B>
+<LI>Form 3 - Choose the <B>Table(s)</B>
+<LI>Form 4 - Choose the <B>Column(s)</B>
+<LI>Form 5 - Choose the <B>Condition(s)</B>
+<LI>Form 6 - Choose the <B>Order</B> (if any) and <B>Execute</B> the query
+</UL>
+
+<p><B>The results can be displayed on your screen and/or written to a file in
+ one of several formats (Excel, Lotus, DBF, or ASCII-Delimited-Text).
+
+<br><br>Choose A Querying Method:
+<UL>
+<LI><INPUT TYPE="radio" NAME="method" VALUE="build" CHECKED> Build A Query (with 'Point and Click')
+<LI><INPUT TYPE="radio" NAME="method" VALUE="freeform"> Free-Form Query
+<LI><INPUT TYPE="radio" NAME="method" VALUE="saved"> Choose A Saved Query
+<LI><INPUT TYPE="radio" NAME="method" VALUE="delete"> Delete One Or More Saved Queries
+<LI><INPUT TYPE="radio" NAME="method" VALUE="groups"> Re-Group Your Saved Queries
+<LI><INPUT TYPE="radio" NAME="method" VALUE="list"> List Your Saved Queries
+</UL></B>
+
+<P><INPUT TYPE="submit" VALUE="Continue">
+<B><blink>It will take about 20 seconds for your ID and Password to be Verified.</blink></B>
+</FORM>

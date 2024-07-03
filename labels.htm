@@ -1,0 +1,138 @@
+<HTML>
+<TITLE>IDEA Web Labels Page</TITLE>
+<body bgcolor="FFFFFF">
+<H2>Labels! Labels! Labels!</H2>
+
+<P><HR SIZE=4><B>
+<FONT COLOR="#FF0000">NOTE: You must have access to a</FONT> PostScript Printer
+<FONT COLOR="#FF0000">and</FONT> laser-printer label forms
+<FONT COLOR="#FF0000">to print these labels. (and you must also have
+an Idea ID and Password)</FONT>
+<br><HR SIZE=4>
+
+<FORM METHOD="POST" ACTION="/cgi-rexx/labels_1.rex">
+
+<P>IDEA ID <INPUT NAME="id" SIZE=6 MAXLENGTH=10>
+ and Password <INPUT TYPE="password" NAME="pass" SIZE=10 MAXLENGTH=20>
+
+<P>Label Style
+<SELECT NAME="style">
+<OPTION>Avery 5260 - 1 x 2.63 inches - 10 rows of 3
+<OPTION>Avery 5261 - 1 x 4 inches - 10 rows of 2
+<OPTION>Avery 5262 - 1.33 x 4 inches - 7 rows of 2
+<OPTION>ASCII File (to be sent to Addressing and Mailing)
+</SELECT>
+<br>Font
+<SELECT NAME="font">
+<OPTION>Times-Roman
+<OPTION>Helvetica
+<OPTION>Courier
+</SELECT>
+ Size
+<SELECT NAME="fontsize">
+<OPTION>10 pt.
+<OPTION>12 pt.
+<OPTION>8 pt.
+</SELECT>
+
+<P>You can make choices below for Staff Demographics labels
+or you can <br><A HREF="#yourown">use your own 'labels' query</A>
+
+<P><TABLE BORDER>
+
+<TR ALIGN=LEFT><TH>
+Label Type
+<SELECT NAME="type">
+<OPTION>Campus Address Labels
+<OPTION>Mayo Address Labels
+<OPTION>Off-Campus Address Labels
+<OPTION>Home Address Labels
+</SELECT>
+<br>(NOTE: You may not have access to Home Address information)
+</TH></TR>
+
+<TR ALIGN=LEFT><TH>
+Include The Following
+<SELECT NAME="include">
+<OPTION>Staff (including Faculty)
+<OPTION>Staff (excluding Faculty)
+<OPTION>Faculty
+<OPTION>Department Offices
+</SELECT>
+</TH></TR>
+
+<TR ALIGN=LEFT><TH>
+    AREA <INPUT NAME="area" SIZE=3 MAXLENGTH=3>
+    ORG <INPUT NAME="org" SIZE=4 MAXLENGTH=4>
+</TH></TR>
+
+<TR ALIGN=LEFT><TH>
+Campus (for Campus Label Type)
+<SELECT NAME="campus">
+<OPTION>All Campuses
+<OPTION>01 - Minneapolis
+<OPTION>02 - St. Paul
+<OPTION>05 - Duluth
+<OPTION>07 - Crookston
+<OPTION>09 - Morris
+</SELECT>
+</TH></TR>
+
+<TR ALIGN=LEFT><TH>
+Payroll Locators (up to 10)
+<br> <INPUT NAME="payloc.1" SIZE=3 MAXLENGTH=3>
+ <INPUT NAME="payloc.2" SIZE=3 MAXLENGTH=3>
+ <INPUT NAME="payloc.3" SIZE=3 MAXLENGTH=3>
+ <INPUT NAME="payloc.4" SIZE=3 MAXLENGTH=3>
+ <INPUT NAME="payloc.5" SIZE=3 MAXLENGTH=3>
+ <INPUT NAME="payloc.6" SIZE=3 MAXLENGTH=3>
+ <INPUT NAME="payloc.7" SIZE=3 MAXLENGTH=3>
+ <INPUT NAME="payloc.8" SIZE=3 MAXLENGTH=3>
+ <INPUT NAME="payloc.9" SIZE=3 MAXLENGTH=3>
+ <INPUT NAME="payloc.10" SIZE=3 MAXLENGTH=3>
+</TH></TR>
+
+</TABLE>
+
+<P><INPUT TYPE="submit" VALUE="Create The Labels">
+<FONT COLOR="#FF0000"> (this could take up to 1 minute or more - please be patient)</FONT>
+<br>(this will just create a PostScript File; you will then have the option
+of either downloading it or printing it directly)
+<br><INPUT TYPE="reset" VALUE="Reset The Choices">
+
+
+<A NAME="yourown"></A>
+<P><TABLE BORDER>
+<CAPTION ALIGN=LEFT><B>Paste (or type) your query and specify the columns for each line
+of the label</B></CAPTION>
+<TR ALIGN=LEFT><TH COLSPAN=3>NOTE: Column-Names must be in Lower-Case</TH></TR>
+<TR><TH>Your Query</TH><TH>Label Lines 1 - 6</TH><TH>Examples</TH></TR>
+<TR><TD ROWSPAN=6><TEXTAREA NAME="querytext" ROWS=10 COLS=40></TEXTAREA></TD>
+<TD><INPUT NAME="queryline.1" SIZE=15 MAXLENGTH=30></TD>
+<TD ALIGN=CENTER>demo_id</TD>
+</TR><TR>
+<TD><INPUT NAME="queryline.2" SIZE=15 MAXLENGTH=30></TD>
+<TD ALIGN=CENTER>label_name</TD>
+</TR><TR>
+<TD><INPUT NAME="queryline.3" SIZE=15 MAXLENGTH=30></TD>
+<TD ALIGN=CENTER>addr_street1</TD>
+</TR><TR>
+<TD><INPUT NAME="queryline.4" SIZE=15 MAXLENGTH=30></TD>
+<TD ALIGN=CENTER>addr_street2</TD>
+</TR><TR>
+<TD><INPUT NAME="queryline.5" SIZE=15 MAXLENGTH=30></TD>
+<TD ALIGN=CENTER>addr_street3</TD>
+</TR><TR>
+<TD><INPUT NAME="queryline.6" SIZE=15 MAXLENGTH=30></TD>
+<TD ALIGN=CENTER>city, st zip</TD>
+</TR>
+</TABLE>
+
+<P><INPUT TYPE="submit" VALUE="Create The Labels">
+<FONT COLOR="#FF0000"> (this could take up to 1 minute or more - please be patient)</FONT>
+<br>(this will just create a PostScript File; you will then have the option
+of either downloading it or printing it directly)
+<br><INPUT TYPE="reset" VALUE="Reset The Choices">
+
+</FORM>
+</HTML>

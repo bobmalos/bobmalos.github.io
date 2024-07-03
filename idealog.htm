@@ -1,0 +1,33 @@
+<HTML>
+<TITLE>IDEA Query Builder Log Search Form</TITLE>
+<H3>IDEA Query Builder Log Search Form</H3>
+
+<FORM METHOD="POST" ACTION="/cgi-rexx/idea_log.rex">
+
+<B>
+Your IDEA (SYBASE) ID <INPUT NAME="xuserid" SIZE=8 MAXLENGTH=15> and (SYBASE) PASSWORD <INPUT NAME="password" TYPE="password" SIZE=8 MAXLENGTH=15>
+<P>YOU MAY CHOOSE ONE OR MORE CONDITIONS
+<P>Date = (YYYYMMDD format e.g. 19980710) <INPUT NAME="singledate" SIZE=8 MAXLENGTH=8>
+<P>Date BETWEEN <INPUT NAME="date1" SIZE=8 MAXLENGTH=8> AND <INPUT NAME="date2" SIZE=8 MAXLENGTH=8>
+<P>User ID = <INPUT NAME="searchuser" SIZE=8 MAXLENGTH=15>
+<P>Amount of TIME it took to run the query 
+<SELECT NAME="timecondition">
+<OPTION SELECTED> GREATER-THAN <OPTION> LESS-THAN <OPTION> EQUALS
+</SELECT> 
+<INPUT NAME="amtoftime" SIZE=4 MAXLENGTH=6> seconds 
+<P>Query CONTAINS <INPUT NAME="query" SIZE=60 MAXLENGTH=200>
+<P>For 'Query CONTAINS' you have several options - you can search for . . .
+<UL>
+<LI>A single database (e.g. cufsrdb) or a single table (e.g. cufs_coa_func)
+<LI>A combination of database and table (e.g. cufsrdb and cufs_coa_func)
+<LI><A HREF="http://notes.ais.umn.edu/phd.htm">Click Here For More Search Examples</A>
+</UL>
+<P>Order results by 
+ <INPUT TYPE="radio" NAME="order" VALUE="datetime" CHECKED>Date and Time
+ <INPUT TYPE="radio" NAME="order" VALUE="relevance">Relevance
+ (Relevance can only take effect if you enter something in 'Query CONTAINS')
+</B>
+
+<P><INPUT TYPE="submit" VALUE="Continue">
+
+</HTML>

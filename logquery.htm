@@ -1,0 +1,363 @@
+<HTML><TITLE>LOGQUERY FORM</TITLE>
+<H3>
+This form lets you do an ad-hoc query against either the Reporting Template log database (NT_LOG.DBF)
+or the Query Builder log database (QUER_LOG.DBF)
+<P>Submit a SELECT to Visual Foxpro - MUST CONTAIN either FROM NT_LOG or FROM QUER_LOG
+</H3>
+<FORM METHOD="POST" ACTION="/cgi-rexx/logquery.rex">
+<TEXTAREA NAME="querytext" ROWS=10 COLS=60>
+</TEXTAREA>
+<P><INPUT TYPE="SUBMIT" VALUE="SUBMIT THE QUERY">
+</FORM>
+<P><B><UL>
+<LI>These are Visual Foxpro databases that reside on the web server machine (F:\RPTLOG\NT_LOG.DBF and
+F:\QUER_LOG\QUER_LOG.DBF) so you a running a Foxpro SELECT - the rules are a little different than
+an Oracle or Sybase SELECT (see below)
+<LI>All fields are type CHARACTER unless otherwise noted
+<LI>The results are returned as a FIXED-WIDTH text file which can be imported into another application.
+<LI>The fields in the NT_LOG (reporting template) database are: RPTDATE (YYYYMMDD), RPTTIME (HH:MM:SS),
+RPTNUM, RPTNAME, MODE (prod, test, develop), USER (name), PARAMS (report parameters), ID (User ID)
+<LI>The fields in the QUER_LOG (query builder) database are: IDENTIFIER (session ID), USERID, XDATE (YYYYMMDD),
+XTIME (HH:MM:SS), QUERY (Memo field - cannot be displayed), ISQLTIME (number of seconds it took to run the query),
+FOXTIME (number of seconds it took to convert the results), SIZE (raw output file size - type NUMERIC), 
+OUTPUT (the output types chosen - 3 characters for each choice), SAVED (no longer used), DESCRIPT (no longer used)
+<LI>NOTE: It's also possible to run something like this:
+<br>select identifier, userid, xdate, xtime from querlog where &LT&LT cufs_tran_open_pds&GT&GT and userid = 'rmalo' and xdate &GT '19990601'
+<br>which would do a combined query using BOTH the PHDbase index on the QUERY field AND other conditions
+<LI>Here's an example that gets a total count of queries by month:
+<br>select substr(xdate,1,6) as month, count(identifier) 
+<br>from quer_log
+<br>group by 1
+</B></UL>
+<P><H3>Visual Foxpro SELECT Syntax: (from the Visual Foxpro help file)</H3><B>
+<pre>
+SELECT [ALL | DISTINCT] [TOP nExpr [PERCENT]]	[Alias.] Select_Item [AS Column_Name]	[, [Alias.] Select_Item [AS Column_Name] ...]
+FROM [FORCE][DatabaseName!]Table [Local_Alias]	[[INNER | LEFT [OUTER] | RIGHT [OUTER] | FULL [OUTER] JOIN		DatabaseName!]Table [Local_Alias]		[ON JoinCondition …]
+[[INTO Destination]	| [TO FILE FileName [ADDITIVE] | TO PRINTER [PROMPT] 	| TO SCREEN]]
+
+[PREFERENCE PreferenceName]
+[NOCONSOLE]
+[PLAIN]
+[NOWAIT]
+[WHERE JoinCondition [AND JoinCondition ...]	[AND | OR FilterCondition [AND | OR FilterCondition ...]]]
+[GROUP BY GroupColumn [, GroupColumn ...]]
+[HAVING FilterCondition]
+[UNION [ALL] SELECTCommand]
+[ORDER BY Order_Item [ASC | DESC] [, Order_Item [ASC | DESC] ...]]
+
+Arguments
+
+SELECT   Specifies the fields, constants, and expressions that are displayed in the query results.
+
+ALL   By default, displays all the rows in the query results.
+
+DISTINCT   Excludes duplicates of any rows from the query results.
+
+Note   You can use DISTINCT only once per SELECT clause.
+
+TOP nExpr [PERCENT]   Specifies that the query result contains a specific number of rows or a percentage of rows in the 
+   query result. You must include an ORDER BY clause when you include the TOP clause. The ORDER BY clause specifies the 
+   columns on which the TOP clause determines the number of rows to include in the query result.
+
+You can specify from 1 to 32,767 rows. Rows with identical values for the columns specified in the ORDER BY clause are 
+   included in the query result. Therefore, if you specify 10 for nExpr, the query result can contain more than 10 rows if 
+   there are more than 10 rows with identical values for the columns specified in the ORDER BY clause.
+
+If the PERCENT keyword is included, the number of rows returned in the result is rounded up to the next highest integer. 
+   Permissible values for nExpr when the PERCENT keyword is included are 0.01 to 99.99.
+
+Alias.   Qualifies matching item names. Each item you specify with Select_Item generates one column of the query results. 
+   If two or more items have the same name, include the table alias and a period before the item name to prevent columns 
+   from being duplicated.
+
+Select_Item specifies an item to be included in the query results. An item can be one of the following:
+
+·	The name of a field from a table in the FROM clause.
+·	A constant specifying that the same constant value is to appear in every row of the query results.
+·	An expression that can be the name of a user-defined function.
+
+AS Column_Name   Specifies the heading for a column in the query output. This option is useful when Select_Item is an 
+   expression or contains a field function and you want to give the column a meaningful name. Column_Name can be an 
+   expression but cannot contain characters (for example, spaces) that aren’t permitted in table field names.
+
+FROM   Lists the tables containing the data that the query retrieves. 
+
+FORCE specifies that tables are joined in the order in which they appear in the FROM clause. If FORCE is omitted, 
+   Visual FoxPro attempts to optimize the query. However, the query might be executed faster by including the FORCE 
+   keyword to disable the Visual FoxPro query optimization.
+
+DatabaseName! specifies the name of a non-current database containing the table. You must include the name of database 
+   containing the table if the database is not the current database. Include the exclamation point (!) delimiter after 
+   the database name and before the table name. 
+
+Local_Alias specifies a temporary name for the table named in Table. If you specify a local alias, you must use the local 
+   alias in place of the table name throughout the SELECT statement.
+
+INNER JOIN specifies that the query result contains only rows from a table that match one or more rows in another table.
+
+LEFT [OUTER] JOIN specifies that the query result contains all rows from the table to the left of the JOIN keyword and 
+   only matching rows from the table to the right of the JOIN keyword. The OUTER keyword is optional; it can be included 
+   to emphasize that an outer join is created.
+
+RIGHT [OUTER] JOIN specifies that the query result contains all rows from the table to the right of the JOIN keyword 
+   and only matching rows from the table to the left of the JOIN keyword. The OUTER keyword is optional; it can be included 
+   to emphasize that an outer join is created.
+
+FULL [OUTER] JOIN specifies that the query result contains all matching and non matching rows from both tables. 
+   The OUTER keyword is optional; it can be included to emphasize that an outer join is created.
+
+ON JoinCondition specifies the conditions for which the tables are joined.
+
+PLAIN   Prevents column headings from appearing in the query output that is displayed. You can use PLAIN whether or not 
+   a TO clause is present. If an INTO clause is included, PLAIN is ignored.
+
+WHERE   Tells Visual FoxPro to include only certain records in the query results. WHERE is required to retrieve 
+   data from multiple tables.
+
+JoinCondition specifies fields that link the tables in the FROM clause. If you include more than one table in a query, 
+   you should specify a join condition for every table after the first.
+
+You must use the AND operator to connect multiple join conditions. Each join condition has the following form:
+
+FieldName1 Comparison FieldName2
+
+FieldName1 is the name of a field from one table, FieldName2 is the name of a field from another table, and Comparison
+ is one of the following operators:
+
+Operator	Comparison
+=	Equal
+==	Exactly equal
+LIKE	SQL LIKE
+<>, !=, #	Not equal
+>	More than
+>=	More than or equal to
+<	Less than
+<=	Less than or equal to
+When you use the = operator with strings, it acts differently depending on the setting of SET ANSI. When SET ANSI is set 
+to OFF, Visual FoxPro treats string comparisons in a manner familiar to Xbase users. When SET ANSI is set to ON, 
+Visual FoxPro follows ANSI standards for string comparisons. See SET ANSI and SET EXACT for additional information about 
+how Visual FoxPro performs string comparisons.
+The WHERE clause supports the ESCAPE operator for the JoinCondition, allowing you to perform meaningful queries on data 
+containing the SELECT - SQL % and _ wildcard characters.
+
+The ESCAPE clause lets you specify that a SELECT - SQL wildcard character be treated as a literal character. In the 
+ESCAPE clause you specify a character, which when placed immediately before the wildcard character, indicates that 
+the wildcard character be treated as a literal character.
+
+FilterCondition specifies the criteria that records must meet to be included in the query results. You can include as many 
+filter conditions as you like in a query, connecting them with the AND or OR operator. You can also use the NOT operator 
+to reverse the value of a logical expression, or use EMPTY( ) to check for an empty field.
+
+FilterCondition can take any of the forms in the following examples:
+Example 1
+Example 1 displays FilterCondition in the form of FieldName1 Comparison FieldName2
+
+customer.cust_id = orders.cust_id
+
+Example 2
+
+Example 2 displays FilterCondition in the form of FieldName Comparison Expression
+
+payments.amount >= 1000
+
+Example 3
+
+Example 3 displays FilterCondition in the form of FieldName Comparison ALL (Subquery)
+
+When the filter condition includes ALL, the field must meet the comparison condition for all values generated by the 
+subquery before its record is included in the query results.
+
+company < ALL ;
+(SELECT company FROM customer WHERE country = "UK")
+
+Example 4
+
+Example 4 displays FilterCondition in the form of FieldName Comparison ANY | SOME (Subquery)
+
+When the filter condition includes ANY or SOME, the field must meet the comparison condition for at least one of the values 
+generated by the subquery.
+
+company < ANY ;
+(SELECT company FROM customer WHERE country = "UK")
+
+Example 5
+
+Example 5 displays FilterCondition in the form of FieldName [NOT] BETWEEN Start_Range AND End_Range
+
+This example checks to see whether the values in the field are within a specified range of values.
+
+customer.postalcode BETWEEN 90000 AND 99999
+
+Example 6
+
+Example 6 displays FilterCondition in the form of [NOT] EXISTS (Subquery)
+
+This example checks to see whether at least one row meets the criterion in the subquery. When the filter condition 
+includes EXISTS, the filter condition evaluates to true (.T.) unless the subquery evaluates to the empty set.
+
+EXISTS ; 
+(SELECT * FROM orders WHERE customer.postalcode = 	orders.postalcode)
+
+Example 7
+
+Example 7 displays FilterCondition in the form of FieldName [NOT] IN Value_Set
+
+When the filter condition includes IN, the field must contain one of the values before its record is included in the 
+query results.
+
+customer.postalcode NOT IN ("98052","98072","98034")
+
+Example 8
+
+Example 8 displays FilterCondition in the form of FieldName [NOT] IN (Subquery)
+
+Here, the field must contain one of the values returned by the subquery before its record is included in the query results.
+
+customer.cust_id IN ; 
+(SELECT orders.cust_id FROM orders WHERE orders.city="Seattle")
+
+Example 9
+
+Example 9 displays FilterCondition in the form of FieldName [NOT] LIKE cExpression
+
+customer.country NOT LIKE "UK"
+
+This filter condition searches for each field that matches cExpression.
+
+You can use the percent sign (%) and underscore ( _ ) wildcards as part of cExpression. The percent sign represents any 
+   sequence of unknown characters in the string. An underscore represents a single unknown character in the string.
+
+GROUP BY GroupColumn [, GroupColumn ...]   Groups rows in the query based on values in one or more columns. GroupColumn 
+   can be the name of a regular table field, a field that includes a SQL field function, or a numeric expression indicating 
+   the location of the column in the result table (the leftmost column number is 1).
+
+HAVING FilterCondition   Specifies a filter condition which groups must meet to be included in the query results. 
+   HAVING should be used with GROUP BY. It can include as many filter conditions as you like, connected with the AND or OR 
+   operators. You can also use NOT to reverse the value of a logical expression.
+
+FilterCondition cannot contain a subquery.
+
+A HAVING clause without a GROUP BY clause acts like a WHERE clause. You can use local aliases and field functions in the 
+   HAVING clause. Use a WHERE clause for faster performance if your HAVING clause contains no field functions. Note that the 
+   HAVING clause should appear before an INTO clause or a syntax error occurs.
+
+[UNION [ALL] SELECTCommand]   Combines the final results of one SELECT with the final results of another SELECT. By default, 
+   UNION checks the combined results and eliminates duplicate rows. Use parentheses to combine multiple UNION clauses.
+
+ALL prevents UNION from eliminating duplicate rows from the combined results.
+
+UNION clauses follow these rules:
+
+·	You cannot use UNION to combine subqueries.
+·	Both SELECT commands must have the same number of columns in their query output.
+·	Each column in the query results of one SELECT must have the same data type and width as the corresponding column 
+        in the other SELECT.
+·	Only the final SELECT can have an ORDER BY clause, which must refer to output columns by number. If an ORDER BY 
+        clause is included, it affects the entire result.
+
+You can also use the UNION clause to simulate an outer join.
+
+When you join two tables in a query, only records with matching values in the joining fields are included in the output. 
+   If a record in the parent table doesn’t have a corresponding record in the child table, the record in the parent table 
+   isn’t included in the output. An outer join allows you to include all the records in the parent table in the output, 
+   along with the matching records in the child table. To create an outer join in Visual FoxPro, you need to use a nested 
+   SELECT command, as in the following example:
+
+SELECT customer.company, orders.order_id, orders.emp_id ;
+	FROM customer, orders ;
+	WHERE customer.cust_id = orders.cust_id ;
+UNION ;
+	SELECT customer.company, " ", " " ;
+	FROM customer ;
+	WHERE customer.cust_id NOT IN ;
+	(SELECT orders.cust_id FROM orders)
+
+Note   Be sure to include the space immediately preceding each semicolon. Otherwise, you’ll receive an error.
+
+The section of the command before the UNION clause selects records from both tables that have matching values. The customer 
+   companies that do not have associated invoices are not included. The section of the command after the UNION clause 
+   selects records in the customer table that do not have matching records in the orders table.
+
+Regarding the second section of the command, note the following:
+
+·	The SELECT statement within the parentheses is processed first. This statement results in a selection of all 
+        customer numbers in the orders table.
+·	The WHERE clause finds all customer numbers in the customer table that are not in the orders table. Since the first 
+        section of the command provided all companies that had a customer number in the orders table, all companies in the 
+        customer table are now included in the query results.
+·	Because the structures of tables included in a UNION must be identical, there are two placeholders in the second 
+        SELECT statement to represent orders.order_id and orders.emp_id from the first SELECT statement.
+
+Note   The placeholders must be the same type as the fields they represent. If the field is a date type, the placeholder 
+   should be { / / }. If the field is a character field, the placeholder should be the empty string, ("").
+
+ORDER BY Order_Item   Sorts the query results based on the data in one or more columns. Each Order_Item must correspond 
+   to a column in the query results and can be one of the following:
+
+·	A field in a FROM table that is also a select item in the main SELECT clause (not in a subquery).
+·	A numeric expression indicating the location of the column in the result table. (The leftmost column is number 1.)
+
+ASC specifies an ascending order for query results, according to the order item or items, and is the default for ORDER BY.
+
+DESC specifies a descending order for query results.
+
+Query results appear unordered if you don’t specify an order with ORDER BY.
+
+Remarks
+
+A subquery, referred to in the following arguments, is a SELECT within a SELECT and must be enclosed in parentheses. 
+   You can have up to two subqueries at the same level (not nested) in the WHERE clause (see that section of the 
+   arguments). Subqueries can contain multiple join conditions.
+
+When you create query output, columns are named according to the following rules:
+
+·	If a select item is a field with a unique name, the output column name is the field’s name.
+·	If more than one select item has the same name,an underscore and a letter are appended to the column name. 
+        For example, if a table called Customer has a field called STREET, and a table called Employees also has a field 
+        called STREET, output columns are named Extension_A and Extension_B (STREET_A and STREET_B). For a select item with 
+        a 10-character name, the name is truncated to add the underscore and letter. For example, DEPARTMENT would become 
+        DEPARTME_A.
+·	If a select item is an expression, its output column is named EXP_A. Any other expressions are named EXP_B, EXP_C, 
+        and so on.
+·	If a select item contains a field function such as COUNT( ), the output column is named CNT_A. If another select 
+        item contains SUM( ), its output column is named SUM_B.
+
+The following field functions are available for use with a select item that is a field or an expression involving a field:
+
+·	AVG(Select_Item), which averages a column of numeric data.
+·	COUNT(Select_Item), which counts the number of select items in a column. COUNT(*) counts the number of rows in the 
+        query output.
+·	MIN(Select_Item), which determines the smallest value of Select_Item in a column.
+·	MAX(Select_Item), which determines the largest value of Select_Item in a column.
+·	SUM(Select_Item), which totals a column of numeric data.
+
+You cannot nest field functions.
+
+Joins   Visual FoxPro supports ANSI SQL ‘92 Join syntax, allowing you to create queries that link the rows in two or 
+   more tables by comparing the values in specified fields. For example, an inner join selects rows from two tables only 
+   when the values of the joined fields are equal. Visual FoxPro supports nested joins.
+
+Because SQL is based on mathematical set theory, each table can be represented as a circle. The ON clause that specifies 
+   the join conditions determines the point of overlap which represents the set of rows that match. For an inner join, 
+   the overlap occurs within the interior or “inner” portion of the two circles. An outer join includes not only those 
+   matched rows found in the inner cross section of the tables, but also the rows in the outer part of the circle to the 
+   left, or right, of the intersection.
+
+Important     Keep the following information in mind when creating join conditions:
+
+·	If you include two tables in a query and don’t specify a join condition, every record in the first table is joined 
+        with every record in the second table as long as the filter conditions are met. Such a query can produce lengthy 
+        results.
+·	Be careful when using, in join conditions, functions such as DELETED( ), EOF( ), FOUND( ), RECCOUNT( ), 
+        and RECNO( ), which support an optional alias or work area. Including an alias or work area in these functions 
+        might yield unexpected results. SELECT doesn’t use your work areas; it performs the equivalent of  USE ... AGAIN. 
+        Single-table queries that use these functions without an optional alias or work area will return proper results. 
+        However, multiple-table queries that use these functions — even without an optional alias or work area — might 
+        return unexpected results.
+·	Use caution when joining tables that contain empty fields because Visual FoxPro matches empty fields. For example, 
+        if you join on CUSTOMER.ZIP and INVOICE.ZIP, and CUSTOMER contains 100 empty zip codes and INVOICE contains 400 
+        empty zip codes, the query output contains 40,000 extra records resulting from the empty fields. Use the EMPTY( ) 
+        function to eliminate empty records from the query output.
+</pre>
+</B>
+</HTML>
